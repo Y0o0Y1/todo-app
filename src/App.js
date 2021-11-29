@@ -28,7 +28,7 @@ const App = () => {
 		margin: `${dimensions.height / 8}px ${dimensions.width / 5}px`,
 	};
 	return (
-		<Grid container justifyContent="center" mt={dimensions.height / 8/8}>
+		<Grid container justifyContent="center" mt={dimensions.height / 8 / 8}>
 			<Grid item xs={12}>
 				<SignIn />
 			</Grid>

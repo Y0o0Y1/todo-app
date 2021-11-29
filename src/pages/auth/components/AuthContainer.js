@@ -4,7 +4,6 @@ const AuthContainer = (props) => {
 	let dimensions = useSelector((state) => {
 		return state.dimensionsReducer.dimensions;
 	});
-	console.log(dimensions);
 	const AuthContainerStyle = {
 		maxWidth: `${dimensions.width}px`,
 		minHeight: `${dimensions.height}px`,
