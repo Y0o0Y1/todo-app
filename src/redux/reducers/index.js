@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
-
-const allReducers = combineReducers({});
+import dimensionsReducer from "./dimensions";
+const allReducers = combineReducers({
+	dimensionsReducer: dimensionsReducer,
+});
 export default allReducers;

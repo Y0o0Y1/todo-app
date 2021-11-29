@@ -35,12 +35,12 @@ const SignIn = () => {
 					ml={4.3}
 					item
 					container
-					direction="column"
+					direction="row"
 					rowSpacing={2}
-					xs={12}
+					xs={8}
 					alignItems="flex-start"
 				>
-					<Grid item>
+					<Grid item xs={10}>
 						<TextField
 							label="Email"
 							sx={{
@@ -48,7 +48,7 @@ const SignIn = () => {
 							}}
 						/>
 					</Grid>
-					<Grid item>
+					<Grid item xs={10}>
 						<TextField
 							label="Password"
 							type="password"
@@ -57,7 +57,7 @@ const SignIn = () => {
 							}}
 						/>
 					</Grid>{" "}
-					<Grid item align="center" ml={1.5}>
+					<Grid item align="center" ml={1.5} xs={10}>
 						<Typography
 							variant="h4"
 							sx={{

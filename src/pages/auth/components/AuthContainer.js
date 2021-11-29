@@ -1,36 +1,24 @@
-import { useState, useEffect } from "react";
-import { Paper, Box } from "@mui/material";
-
+import { Paper, Box, Container } from "@mui/material";
+import { useSelector } from "react-redux";
 const AuthContainer = (props) => {
-	const [dimensions, setDimensions] = useState({
-		height: window.innerHeight,
-		width: window.innerWidth,
-	});
-	const handleResize = () => {
-		setDimensions({
-			height: window.innerHeight,
-			width: window.innerWidth,
-		});
-	};
-	useEffect(() => {
-		window.addEventListener("resize", handleResize);
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
+	let dimensions = useSelector((state) => {
+		return state.dimensionsReducer.dimensions;
 	});
 	console.log(dimensions);
 	const AuthContainerStyle = {
-		width: `${dimensions.width / 3}px`,
-		height: `${dimensions.height / 3}px`,
+		width: `${dimensions.width * (70 / 100)}px`,
+		height: `${dimensions.height * (50 / 100)}px`,
 	};
 	return (
-		<Box
-			style={AuthContainerStyle}
-			mt={dimensions.height / 8 / 8}
-			mb={dimensions.height / 8 / 8}
-		>
-			<Paper elevation={5}>{props.children}</Paper>
-		</Box>
+		<Container>
+			<Box
+				style={AuthContainerStyle}
+				mt={dimensions.height / 9 / 8}
+				mb={dimensions.height / 9 / 8}
+			>
+				<Paper elevation={5}>{props.children}</Paper>
+			</Box>
+		</Container>
 	);
 };
 
