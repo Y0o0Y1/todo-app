@@ -1,38 +1,32 @@
-import React from "react";
 import AuthContainer from "./components/AuthContainer";
 import { TextField, Grid, Typography, Button } from "@mui/material";
 import logo from "../../assets/google-keep.png";
 
+import { useNavigate } from "react-router-dom";
 //Form and Validation Utils
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 const validationSchema = yup.object({
-	email: yup.string().email().required(),
+	email: yup
+		.string()
+		.email("Please Enter a valid Email")
+		.required("Please Enter Your Email"),
 	password: yup.string().required("Please Enter Your Password"),
 });
 
 const SignIn = () => {
+	const navigate = useNavigate();
 	const {
-		register,
 		handleSubmit,
 		formState: { errors },
 		control,
 	} = useForm({
 		resolver: yupResolver(validationSchema),
 	});
-	const signInFields = Object.keys(validationSchema.fields).map((field) => {
-		let label = field.replace(/([A-Z])/g, " $1").trim();
-		label = label.replace(label[0], label[0].toUpperCase());
-		return {
-			formName: field,
-			formLabel: label,
-		};
-	});
 	const onSubmit = (data) => {
 		console.log("submitting", data);
 	};
-	console.log(errors);
 	return (
 		<AuthContainer>
 			<Grid container direction="row">
@@ -59,9 +53,13 @@ const SignIn = () => {
 						Please enter your credentials{" "}
 					</Typography>
 				</Grid>
-				<form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					noValidate
+					autoComplete="off"
+				>
 					<Grid
-						mt={9.5}
+						mt={8}
 						pl={2.15}
 						pr={2.15}
 						item
@@ -74,9 +72,15 @@ const SignIn = () => {
 							<Controller
 								control={control}
 								name="email"
+								defaultValue=""
 								render={({ field }) => {
 									return (
 										<TextField
+											inputProps={{
+												form: {
+													autocomplete: "off",
+												},
+											}}
 											{...field}
 											label="Email"
 											fullWidth
@@ -94,6 +98,7 @@ const SignIn = () => {
 							<Controller
 								control={control}
 								name="password"
+								defaultValue=""
 								render={({ field }) => {
 									return (
 										<TextField
@@ -127,6 +132,7 @@ const SignIn = () => {
 									sx={{
 										cursor: "pointer",
 									}}
+									onClick={() => navigate("./sign-up")}
 								>
 									{" "}
 									Sign-up here!

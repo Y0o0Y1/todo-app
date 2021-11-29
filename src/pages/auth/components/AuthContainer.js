@@ -6,7 +6,7 @@ const AuthContainer = (props) => {
 	});
 	const AuthContainerStyle = {
 		maxWidth: `${dimensions.width}px`,
-		minHeight: `${dimensions.height}px`,
+		minHeight: `100%`,
 	};
 	return (
 		<Container style={AuthContainerStyle}>
@@ -14,6 +14,7 @@ const AuthContainer = (props) => {
 				<Paper
 					elevation={7}
 					sx={{
+						height: `${dimensions.height}`,
 						borderRadius: "15px",
 					}}
 				>

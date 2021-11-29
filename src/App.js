@@ -3,7 +3,8 @@ import SignIn from "./pages/auth/SignIn";
 import { useDispatch } from "react-redux";
 import { updateWindowSize } from "./redux/actions/common/dimensions";
 import { Grid } from "@mui/material";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SignUp from "./pages/auth/SignUp";
 const App = () => {
 	let dispatch = useDispatch();
 	const [dimensions, setDimensions] = useState({
@@ -23,14 +24,15 @@ const App = () => {
 			window.removeEventListener("resize", handleResize);
 		};
 	});
-	const appStyle = {
-		padding: `0px`,
-		margin: `${dimensions.height / 8}px ${dimensions.width / 5}px`,
-	};
 	return (
 		<Grid container justifyContent="center" mt={dimensions.height / 8 / 8}>
 			<Grid item xs={12}>
-				<SignIn />
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" exact element={<SignIn />} />
+						<Route path="/sign-up" exact element={<SignUp />} />
+					</Routes>
+				</BrowserRouter>
 			</Grid>
 		</Grid>
 	);
