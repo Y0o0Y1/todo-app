@@ -6,17 +6,20 @@ const AuthContainer = (props) => {
 	});
 	console.log(dimensions);
 	const AuthContainerStyle = {
-		width: `${dimensions.width * (70 / 100)}px`,
-		height: `${dimensions.height * (50 / 100)}px`,
+		maxWidth: `${dimensions.width}px`,
+		minHeight: `${dimensions.height}px`,
 	};
 	return (
-		<Container>
-			<Box
-				style={AuthContainerStyle}
-				mt={dimensions.height / 9 / 8}
-				mb={dimensions.height / 9 / 8}
-			>
-				<Paper elevation={5}>{props.children}</Paper>
+		<Container style={AuthContainerStyle}>
+			<Box>
+				<Paper
+					elevation={7}
+					sx={{
+						borderRadius: "15px",
+					}}
+				>
+					{props.children}
+				</Paper>
 			</Box>
 		</Container>
 	);

@@ -7,7 +7,7 @@ const SignIn = () => {
 	return (
 		<AuthContainer>
 			<Grid container direction="row">
-				<Grid item mt={4.3} xs={12} align="center">
+				<Grid item align="center" mt={3.3} xs={12}>
 					<img width="110" height="104" src={logo} alt="logo" />
 				</Grid>
 				<Grid item mt={2.5} xs={12} align="center">
@@ -32,32 +32,21 @@ const SignIn = () => {
 				</Grid>
 				<Grid
 					mt={9.5}
-					ml={4.3}
+					pl={2.15}
+					pr={2.15}
 					item
 					container
 					direction="row"
 					rowSpacing={2}
-					xs={8}
-					alignItems="flex-start"
+					xs={12}
 				>
-					<Grid item xs={10}>
-						<TextField
-							label="Email"
-							sx={{
-								width: "120%",
-							}}
-						/>
+					<Grid item xs={12} sm={10} md={8} lg={7}>
+						<TextField label="Email" fullWidth />
 					</Grid>
-					<Grid item xs={10}>
-						<TextField
-							label="Password"
-							type="password"
-							sx={{
-								width: "120%",
-							}}
-						/>
+					<Grid item xs={12} sm={10} md={8} lg={7}>
+						<TextField label="Password" type="password" fullWidth />
 					</Grid>{" "}
-					<Grid item align="center" ml={1.5} xs={10}>
+					<Grid item ml={1.5} xs={12} sm={10} md={8} lg={7}>
 						<Typography
 							variant="h4"
 							sx={{
@@ -79,7 +68,7 @@ const SignIn = () => {
 						</Typography>{" "}
 					</Grid>{" "}
 				</Grid>
-				<Grid item xs={12} align="right" mr={6} mb={6}>
+				<Grid item align="center" mt={5} mb={6} xs={12}>
 					<Button
 						variant="contained"
 						sx={{

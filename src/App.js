@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 import SignIn from "./pages/auth/SignIn";
 import { useDispatch } from "react-redux";
-
 import { updateWindowSize } from "./redux/actions/common/dimensions";
+import { Grid } from "@mui/material";
 
-const appStyle = {
-	display: "grid",
-	justifyContent: "center",
-	height: "1024px",
-};
 const App = () => {
 	let dispatch = useDispatch();
 	const [dimensions, setDimensions] = useState({
@@ -28,11 +23,16 @@ const App = () => {
 			window.removeEventListener("resize", handleResize);
 		};
 	});
-
+	const appStyle = {
+		padding: `0px`,
+		margin: `${dimensions.height / 8}px ${dimensions.width / 5}px`,
+	};
 	return (
-		<div style={appStyle}>
-			<SignIn />
-		</div>
+		<Grid container justifyContent="center" mt={dimensions.height / 8/8}>
+			<Grid item xs={12}>
+				<SignIn />
+			</Grid>
+		</Grid>
 	);
 };
 
