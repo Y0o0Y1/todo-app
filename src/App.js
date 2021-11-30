@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SignIn from "./pages/auth/SignIn";
 import { useDispatch } from "react-redux";
 import { updateWindowSize } from "./redux/actions/common/dimensions";
-import { Grid } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./pages/auth/SignUp";
 const App = () => {
@@ -25,15 +25,21 @@ const App = () => {
 		};
 	});
 	return (
-		<Grid container justifyContent="center" mt={dimensions.height / 8 / 8}>
-			<Grid item xs={12}>
-				<BrowserRouter>
-					<Routes>
-						<Route path="/" exact element={<SignIn />} />
-						<Route path="/sign-up" exact element={<SignUp />} />
-					</Routes>
-				</BrowserRouter>
-			</Grid>
+		<Grid
+			container
+			direction="row"
+			justifyContent="center"
+			alignItems="center"
+			sx={{
+				height: "100vh",
+			}}
+		>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" exact element={<SignIn />} />
+					<Route path="/sign-up" exact element={<SignUp />} />
+				</Routes>
+			</BrowserRouter>
 		</Grid>
 	);
 };
