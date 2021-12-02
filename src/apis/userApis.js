@@ -1,28 +1,14 @@
 import axios from "axios";
 
+let baseURL = "https://api-nodejs-todolist.herokuapp.com/user";
+
 export const userSignUp = (data) => {
 	axios
-		.post("https://powerful-fjord-38103.herokuapp.com/user/signup", {
-			headers: {
-				"Access-Control-Allow-Origin": "*",
-			},
-			proxy: {
-				host: "104.236.174.88",
-				port: 3128,
-			},
-			data: {
-				name: data.name,
-				email: data.email,
-				password: data.password,
-				confirmPassword: data.password,
-			},
+		.post(`${baseURL}/register`, data)
+		.then(function (response) {
+			console.log(JSON.stringify(response.data));
 		})
-		.then((response) => {
-			console.log(response);
-			return response;
-		})
-		.catch((error) => {
+		.catch(function (error) {
 			console.log(error);
-			return error;
 		});
 };
