@@ -126,6 +126,30 @@ const SignUp = () => {
 							}}
 						/>
 					</Grid>
+					<Grid item align="center" xs={12} sm={10} md={8} lg={7}>
+						<Controller
+							control={control}
+							name="age"
+							defaultValue=""
+							render={({ field }) => {
+								return (
+									<TextField
+										inputProps={{
+											form: {
+												autocomplete: "off",
+											},
+										}}
+										{...field}
+										label="Age"
+										fullWidth
+										type="age"
+										error={!!errors.age}
+										helperText={errors.age ? errors.age?.message : ""}
+									/>
+								);
+							}}
+						/>
+					</Grid>
 					<Grid item align="center" xs={12} sm={10} md={8} lg={10}>
 						<Button
 							type="submit"
