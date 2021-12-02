@@ -20,29 +20,21 @@ const AuthContainer = (props) => {
 					// md, medium: 900px
 					// lg, large: 1200px
 					// xl, extra-large: 1536px
-					margin: {
-						xs: "2vh 1vh",
-						sm: "0",
-					},
-					padding: {
-						xs: "10vh 0",
-					},
+					margin: "1vh 1vw",
 					width: {
-						xs: "45vh",
-						sm: "50vh",
-						md: "70vh",
-						lg: "70vh",
-						xl: "70vh",
+						xs: "90vw",
+						sm: "55vw",
+						md: "50vw",
+						lg: "40vw",
+						xl: "30vw",
 					},
-					maxHeight: {
-						xs: "100%",
-					},
+					paddingBottom: "10px",
 					height: {
-						xs: "95vh",
-						sm: "85vh",
-						md: "80vh",
-						lg: "80vh",
-						xl: "60vh",
+						xs: "90vh",
+						sm: "95vh",
+						md: "90vh",
+						lg: "90vh",
+						xl: "65vh",
 					},
 				}}
 			>
