@@ -1,7 +1,8 @@
 import AuthContainer from "./components/AuthContainer";
 import { TextField, Grid, Typography, Button } from "@mui/material";
-
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/actions/user/userActions";
 //Form and Validation Utils
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,6 +17,7 @@ const validationSchema = yup.object({
 
 const SignIn = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -25,6 +27,7 @@ const SignIn = () => {
 	});
 	const onSubmit = (data) => {
 		console.log("submitting", data);
+		logIn(dispatch, data);
 	};
 	return (
 		<AuthContainer header="Sign In" subHeader="Please Enter your credentials">

@@ -2,7 +2,7 @@ import React from "react";
 import AuthContainer from "./components/AuthContainer";
 import { TextField, Grid, Typography, Button } from "@mui/material";
 
-import { userSignUp } from "../../apis/userApis";
+import { userRegister } from "../../apis/userApis";
 import { useNavigate } from "react-router-dom";
 
 //Form and Validation Utils
@@ -30,7 +30,7 @@ const SignUp = () => {
 	});
 	const onSubmit = (data) => {
 		console.log("submitting", data);
-		userSignUp(data);
+		userRegister(data);
 	};
 
 	return (
