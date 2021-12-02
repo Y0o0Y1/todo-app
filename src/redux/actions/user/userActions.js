@@ -1,4 +1,6 @@
-import { userLogin } from "../../../apis/userApis";
+import axios from "axios";
+
+let baseURL = "https://api-nodejs-todolist.herokuapp.com/user";
 
 const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
 const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
@@ -23,7 +25,18 @@ export const userLoginFailure = (dispatch) => {
 	});
 };
 
-export const logIn = (dispatch, data) => {
+export const userLogin = (dispatch, data) => {
 	userLoginRequest(dispatch);
-	userLogin(data);
+	axios
+		.post(`${baseURL}/login`, data)
+		.then(function (response) {
+			userLoginSuccess(dispatch);
+			console.log(JSON.stringify(response.data));
+			return response;
+		})
+		.catch(function (error) {
+			userLoginFailure(dispatch);
+			console.log(error);
+			return error;
+		});
 };
