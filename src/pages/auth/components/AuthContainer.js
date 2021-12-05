@@ -10,68 +10,64 @@ const AuthContainerStyle = {
 //----------------------------------------------------------------------------------------------
 const AuthContainer = (props) => {
 	return (
-		<Grid item container justifyContent="center">
-			<Paper
-				elevation={7}
+		<Grid
+			item
+			justifyContent="center"
+			elevation={7}
+			component={Paper}
+			sx={{
+				margin: "1vh",
+				padding: "1em 0.5vw",
+				borderRadius: "15px",
+				width: {
+					xs: "90vw",
+					sm: "70vw",
+					md: "50vw",
+					lg: "40vw",
+					xl: "30vw",
+				},
+				paddingBottom: "10px",
+				height: {
+					xs: "200vmin",
+					sm: "90vmax",
+					md: "80vmin",
+					lg: "80vmin",
+					xl: "75vmin",
+				},
+			}}
+		>
+			<Grid
+				container
+				direction="column"
 				sx={{
-					borderRadius: "15px",
-					// xs, extra-small: 0px
-					// sm, small: 600px
-					// md, medium: 900px
-					// lg, large: 1200px
-					// xl, extra-large: 1536px
-					margin: "1vh 1vw",
-					width: {
-						xs: "90vw",
-						sm: "55vw",
-						md: "50vw",
-						lg: "40vw",
-						xl: "30vw",
-					},
-					paddingBottom: "10px",
-					height: {
-						xs: "90vh",
-						sm: "95vh",
-						md: "90vh",
-						lg: "90vh",
-						xl: "65vh",
-					},
+					flexWrap: "wrap",
 				}}
 			>
-				<Grid item container direction="column" pt={4} spacing={2}>
-					<Grid item align="center">
-						<img width="110" height="104" src={logo} alt="logo" />
-					</Grid>{" "}
-					<Grid item xs={12} align="center">
-						<Typography
-							variant="h4"
-							sx={{
-								fontSize: "30px",
-								fontWeight: "bold",
-							}}
-						>
-							{props.header}
-						</Typography>
-						<Typography
-							variant="h4"
-							sx={{
-								fontSize: "20px",
-								fontWeight: "medium",
-							}}
-						>
-							{props.subHeader}
-						</Typography>
-					</Grid>
-					<Container
+				<Grid item align="center">
+					<img width="110" height="104" src={logo} alt="logo" />
+				</Grid>{" "}
+				<Grid item xs={12} align="center">
+					<Typography
+						variant="h4"
 						sx={{
-							maxHeight: "80vh",
-							width: "40vh",
+							fontSize: "30px",
+							fontWeight: "bold",
 						}}
 					>
-						{props.children}
-					</Container>
+						{props.header}
+					</Typography>
+					<Typography
+						variant="h4"
+						sx={{
+							fontSize: "20px",
+							fontWeight: "medium",
+						}}
+					>
+						{props.subHeader}
+					</Typography>
 				</Grid>
-			</Paper>
+				<Container>{props.children}</Container>
+			</Grid>
 		</Grid>
 	);
 };

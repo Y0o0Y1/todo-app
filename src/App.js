@@ -31,7 +31,9 @@ const App = () => {
 			justifyContent="center"
 			alignItems="center"
 			sx={{
+				flexWrap: "wrap",
 				height: "100vh",
+				width: "100vw",
 			}}
 		>
 			<BrowserRouter>

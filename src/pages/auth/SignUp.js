@@ -47,8 +47,9 @@ const SignUp = () => {
 					rowSpacing={2}
 					justifyContent="center"
 					align="center"
+					sx={{ flexWrap: "wrap" }}
 				>
-					<Grid item align="center" xs={12} sm={10} md={8} lg={12}>
+					<Grid item align="center">
 						<Controller
 							control={control}
 							name="name"
@@ -74,7 +75,7 @@ const SignUp = () => {
 							}}
 						/>
 					</Grid>
-					<Grid item align="center" xs={12} sm={10} md={8} lg={6}>
+					<Grid item align="center">
 						<Controller
 							control={control}
 							name="email"
@@ -100,7 +101,7 @@ const SignUp = () => {
 							}}
 						/>
 					</Grid>
-					<Grid item align="center" xs={12} sm={10} md={8} lg={7}>
+					<Grid item align="center">
 						<Controller
 							control={control}
 							name="password"
@@ -126,7 +127,7 @@ const SignUp = () => {
 							}}
 						/>
 					</Grid>
-					<Grid item align="center" xs={12} sm={10} md={8} lg={7}>
+					<Grid item align="center">
 						<Controller
 							control={control}
 							name="age"
@@ -150,7 +151,7 @@ const SignUp = () => {
 							}}
 						/>
 					</Grid>
-					<Grid item align="center" xs={12} sm={10} md={8} lg={10}>
+					<Grid item align="center">
 						<Button
 							type="submit"
 							variant="contained"
@@ -167,7 +168,7 @@ const SignUp = () => {
 							Submit
 						</Button>
 					</Grid>
-					<Grid item align="center" xs={12} sm={10} md={8} lg={7}>
+					<Grid item align="center">
 						<Typography
 							variant="h4"
 							sx={{
