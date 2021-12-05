@@ -19,7 +19,7 @@ const App = () => {
 		if (user.loggedIn) {
 			navigate("/main");
 		}
-	}, []);
+	}, [navigate, user.loggedIn]);
 	return (
 		<>
 			{user.loggedIn && <Header />}

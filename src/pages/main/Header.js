@@ -15,10 +15,19 @@ import { Grid } from "@mui/material";
 
 import logo from "../../assets/google-keep.png";
 
+import { logout } from "../../redux/actions/user/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const userToken = useSelector((state) => {
+		return state.userReducer.userAuthToken;
+	});
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -149,13 +158,21 @@ const Header = () => {
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-								{settings.map((setting) => (
-									<MenuItem key={setting} onClick={handleCloseNavMenu}>
-										<Typography textAlign="center">
-											{setting}
-										</Typography>
+								{" "}
+								<MenuItem key="" onClick={handleCloseNavMenu}>
+									<Button
+										onClick={() => {
+											logout(dispatch, userToken, navigate);
+										}}
+									>
+										Logout
+									</Button>
+								</MenuItem>
+								{/* {settings.map((setting) => (
+									<MenuItem key="" onClick={handleCloseNavMenu}>
+										<Typography textAlign="center">Logout</Typography>
 									</MenuItem>
-								))}
+								))} */}
 							</Menu>
 						</Box>
 					</Toolbar>
