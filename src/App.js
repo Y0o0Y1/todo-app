@@ -1,48 +1,50 @@
-import React, { useState, useEffect } from "react";
-import SignIn from "./pages/auth/SignIn";
-import { useDispatch } from "react-redux";
-import { updateWindowSize } from "./redux/actions/common/dimensions";
+import React, { useEffect } from "react";
+
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import { Grid } from "@mui/material";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
+import Main from "./pages/main/Main";
+import Header from "./pages/main/Header";
+
 const App = () => {
-	let dispatch = useDispatch();
-	const [dimensions, setDimensions] = useState({
-		height: window.innerHeight,
-		width: window.innerWidth,
+	const navigate = useNavigate();
+	const user = useSelector((state) => {
+		return state.userReducer;
 	});
-	const handleResize = () => {
-		setDimensions({
-			height: window.innerHeight,
-			width: window.innerWidth,
-		});
-		updateWindowSize(dispatch, dimensions);
-	};
 	useEffect(() => {
-		window.addEventListener("resize", handleResize);
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	});
+		if (user.loggedIn) {
+			navigate("/main");
+		}
+	}, []);
 	return (
-		<Grid
-			container
-			direction="row"
-			justifyContent="center"
-			alignItems="center"
-			sx={{
-				flexWrap: "wrap",
-				height: "100vh",
-				width: "100vw",
-			}}
-		>
-			<BrowserRouter>
+		<>
+			{user.loggedIn && <Header />}
+			<Grid
+				container
+				direction="row"
+				justifyContent="center"
+				sx={{
+					height: "100vh",
+				}}
+			>
 				<Routes>
-					<Route path="/" exact element={<SignIn />} />
-					<Route path="/sign-up" exact element={<SignUp />} />
+					{!user.loggedIn ? (
+						<>
+							<Route path="/" exact element={<SignIn />} />
+							<Route path="/sign-up" exact element={<SignUp />} />
+						</>
+					) : (
+						<>
+							<Route path="/main" exact element={<Main />} />
+						</>
+					)}
 				</Routes>
-			</BrowserRouter>
-		</Grid>
+			</Grid>
+		</>
 	);
 };
 

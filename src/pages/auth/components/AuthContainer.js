@@ -1,16 +1,12 @@
-import { Paper, Box, Container, Typography, Grid } from "@mui/material";
-import { useSelector } from "react-redux";
+import { Paper, Container, Typography, Grid } from "@mui/material";
 
 import logo from "../../../assets/google-keep.png";
-
-const AuthContainerStyle = {
-	minWidth: `90vh`,
-};
 
 //----------------------------------------------------------------------------------------------
 const AuthContainer = (props) => {
 	return (
 		<Grid
+			alignSelf="center"
 			item
 			justifyContent="center"
 			elevation={7}

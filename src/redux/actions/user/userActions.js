@@ -27,13 +27,14 @@ export const userLoginFailure = (dispatch, error) => {
 	});
 };
 
-export const userLogin = (dispatch, data) => {
+export const userLogin = (dispatch, data, navigate) => {
 	userLoginRequest(dispatch);
 	axios
 		.post(`${baseURL}/login`, data)
 		.then(function (response) {
 			userLoginSuccess(dispatch, response.data);
 			console.log(JSON.stringify(response.data));
+			navigate("/main");
 			return response;
 		})
 		.catch((error) => {

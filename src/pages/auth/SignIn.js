@@ -1,7 +1,7 @@
 import AuthContainer from "./components/AuthContainer";
 import { TextField, Grid, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../redux/actions/user/userActions";
 
 //Form and Validation Utils
@@ -19,6 +19,9 @@ const validationSchema = yup.object({
 const SignIn = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const user = useSelector((state) => {
+		return state.userReducer;
+	});
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -28,8 +31,11 @@ const SignIn = () => {
 	});
 	const onSubmit = (data) => {
 		console.log("submitting", data);
-		userLogin(dispatch, data);
+		userLogin(dispatch, data, navigate);
 	};
+	if (user.loggedIn) {
+		navigate("/main");
+	}
 	return (
 		<AuthContainer header="Sign In" subHeader="Please Enter your credentials">
 			<form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
