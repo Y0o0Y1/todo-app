@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SignIn from "./pages/auth/SignIn";
 import { useDispatch } from "react-redux";
 import { updateWindowSize } from "./redux/actions/common/dimensions";
-import { Grid, Container } from "@mui/material";
+import { Grid } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./pages/auth/SignUp";
 const App = () => {

@@ -13,15 +13,17 @@ export const userLoginRequest = (dispatch) => {
 	});
 };
 
-export const userLoginSuccess = (dispatch) => {
+export const userLoginSuccess = (dispatch, payload) => {
 	dispatch({
 		type: USER_LOGIN_SUCCESS,
+		response: payload,
 	});
 };
 
-export const userLoginFailure = (dispatch) => {
+export const userLoginFailure = (dispatch, error) => {
 	dispatch({
 		type: USER_LOGIN_FAILURE,
+		error: error,
 	});
 };
 
@@ -30,13 +32,14 @@ export const userLogin = (dispatch, data) => {
 	axios
 		.post(`${baseURL}/login`, data)
 		.then(function (response) {
-			userLoginSuccess(dispatch);
+			userLoginSuccess(dispatch, response.data);
 			console.log(JSON.stringify(response.data));
 			return response;
 		})
-		.catch(function (error) {
-			userLoginFailure(dispatch);
-			console.log(error);
+		.catch((error) => {
+			console.log("catching");
+			userLoginFailure(dispatch, error);
+			console.log("errorrrrrrrr", error);
 			return error;
 		});
 };

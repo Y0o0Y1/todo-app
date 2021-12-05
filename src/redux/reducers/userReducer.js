@@ -8,10 +8,21 @@ const userReducer = (state = initialState, action) => {
 		case "USER_LOGIN_REQUEST":
 			return { ...initialState, loggingIn: true };
 		case "USER_LOGIN_SUCCESS": {
-			return { ...initialState, loggedIn: true, loggingIn: false };
+			return {
+				...initialState,
+				loggedIn: true,
+				loggingIn: false,
+				response: action.response,
+				userAuthToken: action.response.token,
+			};
 		}
 		case "USER_LOGIN_FAILURE": {
-			return { ...initialState, loggedIn: false, loggingIn: false };
+			return {
+				...initialState,
+				loggedIn: false,
+				loggingIn: false,
+				error: action.error,
+			};
 		}
 		default:
 			return state;
