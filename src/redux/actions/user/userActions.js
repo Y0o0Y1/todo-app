@@ -2,15 +2,15 @@ import axios from "axios";
 
 let baseURL = "https://api-nodejs-todolist.herokuapp.com/user";
 
-const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
+const USER_LOG_REQUEST = "USER_LOG_REQUEST";
 const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
 const USER_LOGOUT = "USER_LOGOUT";
 
 //Action Creator
-export const userLoginRequest = (dispatch) => {
+export const userLog = (dispatch) => {
 	dispatch({
-		type: USER_LOGIN_REQUEST,
+		type: USER_LOG_REQUEST,
 	});
 };
 
@@ -37,7 +37,7 @@ export const userLogout = (dispatch) => {
 
 //Login Function
 export const userLogin = (dispatch, data, navigate) => {
-	userLoginRequest(dispatch);
+	userLog(dispatch);
 	axios
 		.post(`${baseURL}/login`, data)
 		.then(function (response) {
@@ -56,7 +56,7 @@ export const userLogin = (dispatch, data, navigate) => {
 
 //Logout Function
 export const logout = (dispatch, token, navigate) => {
-	console.log(token);
+	userLog(dispatch);
 	axios
 		.post(
 			`${baseURL}/logout`,

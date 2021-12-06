@@ -27,7 +27,7 @@ const App = () => {
 					color: "#fff",
 					zIndex: (theme) => theme.zIndex.drawer + 1,
 				}}
-				open={user.loggingIn}
+				open={user.logging}
 				// onClick={}
 			>
 				<CircularProgress color="inherit" />
