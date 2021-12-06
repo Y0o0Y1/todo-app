@@ -11,12 +11,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 
 const validationSchema = yup.object({
-	name: yup.string().required(),
+	name: yup.string().required("Name is Required"),
 	email: yup
 		.string()
 		.email("Please Enter a valid Email")
 		.required("Please Enter Your Email"),
-	password: yup.string().required("Please Enter Your Password"),
+	password: yup
+		.string()
+		.required("Password is required")
+		.min(8, "Password Length must not be less than 8"),
+	age: yup.string().required("Age is required"),
 });
 
 const SignUp = () => {
