@@ -45,7 +45,6 @@ const Header = () => {
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
-
 	return (
 		<Grid
 			item
@@ -72,7 +71,6 @@ const Header = () => {
 						>
 							<img width="50" height="50" src={logo} alt="logo" />
 						</Box>
-
 						<Box
 							sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
 						>

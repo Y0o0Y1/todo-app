@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { Grid } from "@mui/material";
+import { Grid, Backdrop, CircularProgress } from "@mui/material";
 
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
@@ -22,6 +22,16 @@ const App = () => {
 	}, [navigate, user.loggedIn]);
 	return (
 		<>
+			<Backdrop
+				sx={{
+					color: "#fff",
+					zIndex: (theme) => theme.zIndex.drawer + 1,
+				}}
+				open={user.loggingIn}
+				// onClick={}
+			>
+				<CircularProgress color="inherit" />
+			</Backdrop>
 			{user.loggedIn && <Header />}
 			<Grid
 				container
