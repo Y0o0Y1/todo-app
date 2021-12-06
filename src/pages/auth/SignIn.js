@@ -1,5 +1,13 @@
+import { useEffect } from "react";
 import AuthContainer from "./components/AuthContainer";
-import { TextField, Grid, Typography, Button } from "@mui/material";
+import {
+	TextField,
+	Alert,
+	AlertTitle,
+	Grid,
+	Typography,
+	Button,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../redux/actions/user/userActions";
@@ -36,8 +44,23 @@ const SignIn = () => {
 	if (user.loggedIn) {
 		navigate("/main");
 	}
+	useEffect(() => {
+		user.error = false;
+	});
 	return (
 		<AuthContainer header="Sign In" subHeader="Please Enter your credentials">
+			{user.error && (
+				<Alert
+					severity="warning"
+					variant="standard"
+					sx={{
+						borderWidth: "22px",
+					}}
+				>
+					<AlertTitle>Error</AlertTitle>
+					Incorrect email or password please check your credentials{" "}
+				</Alert>
+			)}
 			<form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
 				<Grid
 					mt={3}

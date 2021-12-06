@@ -20,6 +20,7 @@ const App = () => {
 			navigate("/main");
 		}
 	}, [navigate, user.loggedIn]);
+
 	return (
 		<>
 			<Backdrop
@@ -28,7 +29,6 @@ const App = () => {
 					zIndex: (theme) => theme.zIndex.drawer + 1,
 				}}
 				open={user.logging}
-				// onClick={}
 			>
 				<CircularProgress color="inherit" />
 			</Backdrop>

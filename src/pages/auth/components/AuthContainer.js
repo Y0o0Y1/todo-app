@@ -1,9 +1,20 @@
-import { Paper, Container, Typography, Grid } from "@mui/material";
+import {
+	Paper,
+	Alert,
+	AlertTitle,
+	Container,
+	Typography,
+	Grid,
+} from "@mui/material";
 
+import { useSelector } from "react-redux";
 import logo from "../../../assets/google-keep.png";
 
 //----------------------------------------------------------------------------------------------
 const AuthContainer = (props) => {
+	const user = useSelector((state) => {
+		return state.userReducer;
+	});
 	return (
 		<Grid
 			alignSelf="center"
