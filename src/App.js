@@ -20,7 +20,6 @@ const App = () => {
 			navigate("/main");
 		}
 	}, [navigate, user.loggedIn]);
-
 	return (
 		<>
 			<Backdrop
