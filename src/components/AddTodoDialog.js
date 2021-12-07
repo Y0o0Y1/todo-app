@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 
@@ -18,11 +18,16 @@ import { addTask } from "../apis/taskApis";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
+
+//Validation Schema
 const validationSchema = yup.object({
 	description: yup.string().required("Description is required"),
 });
 export const AddTodoDialog = () => {
-    
+	const userAuthToken = useSelector((state) => {
+		return state.userReducer.userAuthToken;
+	});
+	console.log(userAuthToken);
 	const [open, setOpen] = useState(false);
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -43,7 +48,7 @@ export const AddTodoDialog = () => {
 	});
 	const onSubmit = (data) => {
 		console.log("submitting", data);
-		addTask(data);
+		addTask(data, userAuthToken);
 	};
 	return (
 		<>

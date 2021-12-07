@@ -2,7 +2,6 @@ import axios from "axios";
 let baseURL = "https://api-nodejs-todolist.herokuapp.com/task";
 
 const getTasks = (userAuthToken) => {
-	
 	axios
 		.get(
 			baseURL,
