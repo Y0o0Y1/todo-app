@@ -1,8 +1,8 @@
 import axios from "axios";
-
 let baseURL = "https://api-nodejs-todolist.herokuapp.com/task";
 
 const getTasks = (userAuthToken) => {
+	
 	axios
 		.get(
 			baseURL,
@@ -23,7 +23,7 @@ const getTasks = (userAuthToken) => {
 		});
 };
 
-const addTask = (data, userAuthToken) => {
+export const addTask = (data, userAuthToken) => {
 	axios
 		.post(baseURL, data, {
 			headers: {
