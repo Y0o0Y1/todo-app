@@ -61,15 +61,16 @@ export const AddTaskDialog = () => {
 	return (
 		<>
 			<Button
-				variant="outlined"
+				variant="contained"
 				onClick={handleClickOpen}
 				size="large"
 				sx={[
 					{
-						color:"#FFCE00",
+						color: "white",
 						fontSize: "1.5rem",
 						borderRadius: "10px",
 						border: "1px solid #FFCE00",
+						backgroundColor: "#FFCE00",
 						textTransform: "none",
 					},
 					{

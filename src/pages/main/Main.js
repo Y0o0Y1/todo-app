@@ -34,10 +34,13 @@ const Main = () => {
 			<Header />
 
 			<Grid container>
-				<Grid item justify="center" xs={12}>
-					<Typography variant="h3" align="center">
+				<Grid item justify="left" xs={12} m={1}>
+					<Typography variant="h4" align="left">
 						Tasks
 					</Typography>
+				</Grid>
+				<Grid item xs={12} align="right" m={1}>
+					<AddTaskDialog />
 				</Grid>
 				<Grid
 					mt={2}
@@ -50,12 +53,10 @@ const Main = () => {
 					justifyContent="center"
 					spacing={1}
 					sx={{
+						minHeight: "70vh",
 						margin: "1rem",
 					}}
 				>
-					<Grid item xs={12} align="right" mt={1} mr={1}>
-						<AddTaskDialog />
-					</Grid>
 					{tasksState.gettingTasks ? (
 						<Backdrop
 							sx={{
