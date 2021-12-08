@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import {
-	Grid,
-	Box,
-	Typography,
-	Paper,
-	IconButton,
-	Checkbox,
-} from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Grid, Box, Typography, Paper, Checkbox } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-const Note = (props) => {
-	console.log(props);
-	const [checked, setChecked] = useState(props.completed);
+
+import DeleteTaskDialog from "../components/DeleteTaskDialog";
+import { useSelector, useDispatch } from "react-redux";
+import { updateTaskState } from "../redux/actions/task/taskAction";
+const Note = ({ task }) => {
+	const userAuthToken = useSelector((state) => {
+		return state.userReducer.userAuthToken;
+	});
+	const dispatch = useDispatch();
+	const [checked, setChecked] = useState(task.completed);
+	const handleChange = () => {
+		setChecked((prev) => !prev);
+		updateTaskState(task._id, userAuthToken, dispatch, task.completed);
+	};
 	return (
 		<Box
 			elevation={5}
@@ -34,13 +37,13 @@ const Note = (props) => {
 							textDecoration: checked ? "line-through" : "",
 						}}
 					>
-						{props.note.description}
+						{task.description}
 					</Typography>
 				</Grid>
 				<Grid item xs={1}>
 					<Checkbox
 						checked={checked}
-						onChange={() => setChecked((prev) => !prev)}
+						onChange={handleChange}
 						checkedIcon={
 							<CheckCircleIcon
 								fontSize="small"
@@ -62,9 +65,7 @@ const Note = (props) => {
 					/>
 				</Grid>
 				<Grid item xs={12} align="right" justify="center">
-					<IconButton>
-						<DeleteIcon fontSize="small" />
-					</IconButton>
+					<DeleteTaskDialog taskID={task._id} />
 				</Grid>
 			</Grid>
 		</Box>

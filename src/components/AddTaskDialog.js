@@ -23,7 +23,7 @@ import { useForm, Controller } from "react-hook-form";
 const validationSchema = yup.object({
 	description: yup.string().required("Description is required"),
 });
-export const AddTodoDialog = () => {
+export const AddTaskDialog = () => {
 	const userAuthToken = useSelector((state) => {
 		return state.userReducer.userAuthToken;
 	});
@@ -48,6 +48,7 @@ export const AddTodoDialog = () => {
 	const onSubmit = (data) => {
 		console.log("submitting", data);
 		addTask(data, userAuthToken);
+		handleClose();
 	};
 	return (
 		<>

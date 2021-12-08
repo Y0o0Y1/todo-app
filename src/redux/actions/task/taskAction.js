@@ -45,11 +45,30 @@ export const getAllTasks = (userAuthToken, dispatch) => {
 		});
 };
 
-export const deleteTask = (taskID, userAuthToken) => {
+export const deleteTask = (taskID, userAuthToken, dispatch) => {
 	axios
-		.post(
+		.delete(`${baseURL}/${taskID}`, {
+			headers: {
+				Authorization: `Bearer ${userAuthToken}`,
+				"Content-Type": "application/json",
+			},
+		})
+		.then((response) => {
+			console.log(response.data);
+			getAllTasks(userAuthToken, dispatch);
+			return response.data;
+		})
+		.catch((error) => {
+			console.log(error);
+			return error;
+		});
+};
+
+export const updateTaskState = (taskID, userAuthToken, dispatch, completed) => {
+	axios
+		.put(
 			`${baseURL}/${taskID}`,
-			{},
+			{ completed: !completed },
 			{
 				headers: {
 					Authorization: `Bearer ${userAuthToken}`,
@@ -59,6 +78,7 @@ export const deleteTask = (taskID, userAuthToken) => {
 		)
 		.then((response) => {
 			console.log(response.data);
+			getAllTasks(userAuthToken, dispatch);
 			return response.data;
 		})
 		.catch((error) => {

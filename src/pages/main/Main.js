@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { AddTodoDialog } from "../../components/AddTodoDialog";
+import { AddTaskDialog } from "../../components/AddTaskDialog";
 import { Typography, Container, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -29,13 +29,13 @@ const Main = () => {
 			<Grid item container xs={12} component={Container}>
 				<Grid item>
 					<Typography variant="h3">Tasks</Typography>
-					<AddTodoDialog />
+					<AddTaskDialog />
 				</Grid>
 				{tasks.map((task) => {
 					return (
 						<Grid item m={1}>
 							{" "}
-							<Note note={task} />
+							<Note task={task} />
 						</Grid>
 					);
 				})}
