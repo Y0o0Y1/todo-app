@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import { AddTaskDialog } from "../../components/AddTaskDialog";
-import { Typography, Paper, Grid } from "@mui/material";
+import {
+	Typography,
+	Paper,
+	Grid,
+	Backdrop,
+	CircularProgress,
+} from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllTasks } from "../../redux/actions/task/taskAction";
@@ -14,19 +20,19 @@ const Main = () => {
 	const user = useSelector((state) => {
 		return state.userReducer;
 	});
-	const tasks = useSelector((state) => {
-		return state.tasksReducer.tasks;
+	const tasksState = useSelector((state) => {
+		return state.tasksReducer;
 	});
 	if (!user.loggedIn) {
 		navigate("/");
 	}
 	useEffect(() => {
 		getAllTasks(user.userAuthToken, dispatch);
-		console.log(tasks);
 	}, []);
 	return (
 		<>
 			<Header />
+
 			<Grid container>
 				<Grid item justify="center" xs={12}>
 					<Typography variant="h3" align="center">
@@ -50,22 +56,35 @@ const Main = () => {
 					<Grid item xs={12} align="right" mt={1} mr={1}>
 						<AddTaskDialog />
 					</Grid>
-					{tasks.map((task, index) => {
-						return (
-							<Grid
-								item
-								xs={12}
-								sm={6}
-								md={4}
-								lg={3}
-								key={index + 1}
-								align={{ sm: "center", xs: "center" }}
-							>
-								{" "}
-								<Note task={task} />
-							</Grid>
-						);
-					})}
+					{tasksState.gettingTasks ? (
+						<Backdrop
+							sx={{
+								color: "black",
+								zIndex: (theme) => theme.zIndex.drawer + 1,
+							}}
+							open={tasksState.gettingTasks}
+						>
+							<CircularProgress color="inherit" />
+						</Backdrop>
+					) : null}
+					<>
+						{tasksState.tasks.map((task, index) => {
+							return (
+								<Grid
+									item
+									xs={12}
+									sm={6}
+									md={4}
+									lg={3}
+									key={index + 1}
+									align={{ sm: "center", xs: "center" }}
+								>
+									{" "}
+									<Note task={task} />
+								</Grid>
+							);
+						})}
+					</>
 				</Grid>
 			</Grid>
 		</>

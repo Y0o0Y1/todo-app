@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Box, Typography, Paper, Checkbox } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-
 import DeleteTaskDialog from "../components/DeleteTaskDialog";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
+
 import { updateTaskState } from "../redux/actions/task/taskAction";
 const Note = ({ task }) => {
 	const userAuthToken = useSelector((state) => {
 		return state.userReducer.userAuthToken;
 	});
+	console.log(task);
 	console.log(task.completed);
 	const dispatch = useDispatch();
 	const handleChange = () => {
@@ -67,12 +69,19 @@ const Note = ({ task }) => {
 							}
 						/>
 					</Grid>
-					<Grid item xs={10} align="right">
+					<Grid item xs={10} align="left">
 						<Box
 							sx={{
 								display: "hidden",
 							}}
-						></Box>
+						>
+							<Typography>
+								Updated at{" "}
+								{moment(task.updatedAt).format(
+									"dddd, MMM D YYYY, h:mm a"
+								)}
+							</Typography>
+						</Box>
 					</Grid>
 					<Grid item xs={2} align="right">
 						<DeleteTaskDialog taskID={task._id} />

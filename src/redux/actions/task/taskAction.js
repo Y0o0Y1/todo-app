@@ -1,7 +1,7 @@
 import axios from "axios";
 let baseURL = "https://api-nodejs-todolist.herokuapp.com/task";
 
-const GET_TASKS_REQUEST = "GET_TASKS";
+const GET_TASKS_REQUEST = "GET_TASKS_REQUEST";
 const GET_TASKS_SUCCESS = "GET_TASKS_SUCCESS";
 const GET_TASKS_FAILURE = "GET_TASKS_FAILURE";
 
