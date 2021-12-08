@@ -39,7 +39,6 @@ export const AddTaskDialog = () => {
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
-
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -61,7 +60,27 @@ export const AddTaskDialog = () => {
 	};
 	return (
 		<>
-			<Button variant="outlined" onClick={handleClickOpen}>
+			<Button
+				variant="outlined"
+				onClick={handleClickOpen}
+				size="large"
+				sx={[
+					{
+						color:"#FFCE00",
+						fontSize: "1.5rem",
+						borderRadius: "10px",
+						border: "1px solid #FFCE00",
+						textTransform: "none",
+					},
+					{
+						"&:hover": {
+							color: "white",
+							backgroundColor: "#FFCE00",
+							border: "1px solid #FFCE00",
+						},
+					},
+				]}
+			>
 				Add Task
 			</Button>
 			<Dialog fullScreen={fullScreen} open={open} onClose={handleClose}>
@@ -125,11 +144,21 @@ export const AddTaskDialog = () => {
 							}}
 						>
 							<DialogActions>
-								<Button autoFocus onClick={handleClose}>
+								<Button
+									color="error"
+									variant="contained"
+									autoFocus
+									onClick={handleClose}
+								>
 									Cancel
 								</Button>
 								<Box sx={{ m: 1, position: "relative" }}>
-									<Button type="submit" autoFocus>
+									<Button
+										type="submit"
+										variant="contained"
+										color="success"
+										autoFocus
+									>
 										Submit
 									</Button>
 									{tasksState.addingTask && (
