@@ -27,7 +27,6 @@ export const AddTodoDialog = () => {
 	const userAuthToken = useSelector((state) => {
 		return state.userReducer.userAuthToken;
 	});
-	console.log(userAuthToken);
 	const [open, setOpen] = useState(false);
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down("md"));

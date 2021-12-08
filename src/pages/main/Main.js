@@ -1,21 +1,46 @@
+import { useEffect } from "react";
 import { AddTodoDialog } from "../../components/AddTodoDialog";
 import { Typography, Container, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getAllTasks } from "../../redux/actions/task/taskAction";
+import { useDispatch } from "react-redux";
+
+import Note from "../../components/Note";
 
 const Main = () => {
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const user = useSelector((state) => {
 		return state.userReducer;
 	});
+	const tasks = useSelector((state) => {
+		return state.tasksReducer.tasks;
+	});
 	if (!user.loggedIn) {
 		navigate("/");
 	}
+	useEffect(() => {
+		getAllTasks(user.userAuthToken, dispatch);
+		console.log(tasks);
+	}, []);
 	return (
-		<Grid item xs={12} component={Container}>
-			<Typography variant="h3">Notes</Typography>
-			<AddTodoDialog />
-		</Grid>
+		<>
+			<Grid item container xs={12} component={Container}>
+				<Grid item>
+					<Typography variant="h3">Tasks</Typography>
+					<AddTodoDialog />
+				</Grid>
+				{tasks.map((task) => {
+					return (
+						<Grid item m={1}>
+							{" "}
+							<Note note={task} />
+						</Grid>
+					);
+				})}
+			</Grid>
+		</>
 	);
 };
 

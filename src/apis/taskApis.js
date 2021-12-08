@@ -1,17 +1,14 @@
 import axios from "axios";
 let baseURL = "https://api-nodejs-todolist.herokuapp.com/task";
 
-const getTasks = (userAuthToken) => {
+export const getTasks = (userAuthToken) => {
+	console.log(userAuthToken);
 	axios
-		.get(
-			baseURL,
-			{},
-			{
-				headers: {
-					Authorization: `Bearer ${userAuthToken}`,
-				},
-			}
-		)
+		.get(baseURL, {
+			headers: {
+				Authorization: `Bearer ${userAuthToken}`,
+			},
+		})
 		.then((response) => {
 			console.log(response.data);
 			return response.data;
@@ -39,28 +36,6 @@ export const addTask = (data, userAuthToken) => {
 			return error;
 		});
 };
-const deleteTask = (taskID, userAuthToken) => {
-	axios
-		.post(
-			`${baseURL}/${taskID}`,
-			{},
-			{
-				headers: {
-					Authorization: `Bearer ${userAuthToken}`,
-					"Content-Type": "application/json",
-				},
-			}
-		)
-		.then((response) => {
-			console.log(response.data);
-			return response.data;
-		})
-		.catch((error) => {
-			console.log(error);
-			return error;
-		});
-};
-
 const updateTaskState = (data, userAuthToken) => {
 	axios
 		.put(baseURL, data, {
