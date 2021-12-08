@@ -29,7 +29,7 @@ const DeleteTaskDialog = ({ taskID }) => {
 	};
 	return (
 		<>
-			<IconButton onClick={handleClickOpen}>
+			<IconButton onClick={handleClickOpen} align="right">
 				<DeleteIcon fontSize="small" />
 			</IconButton>
 			<Dialog

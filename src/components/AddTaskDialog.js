@@ -12,8 +12,8 @@ import {
 	Grid,
 } from "@mui/material";
 
-import { addTask } from "../apis/taskApis";
-
+import { addTask } from "../redux/actions/task/taskAction";
+import { useDispatch } from "react-redux";
 //Form and Validation Utils
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -24,6 +24,7 @@ const validationSchema = yup.object({
 	description: yup.string().required("Description is required"),
 });
 export const AddTaskDialog = () => {
+	const dispatch = useDispatch();
 	const userAuthToken = useSelector((state) => {
 		return state.userReducer.userAuthToken;
 	});
@@ -47,13 +48,13 @@ export const AddTaskDialog = () => {
 	});
 	const onSubmit = (data) => {
 		console.log("submitting", data);
-		addTask(data, userAuthToken);
+		addTask(data, userAuthToken, dispatch);
 		handleClose();
 	};
 	return (
 		<>
 			<Button variant="outlined" onClick={handleClickOpen}>
-				Add Todo
+				Add Task
 			</Button>
 			<Dialog fullScreen={fullScreen} open={open} onClose={handleClose}>
 				<Grid container direction="column">

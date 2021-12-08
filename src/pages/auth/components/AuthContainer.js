@@ -24,7 +24,7 @@ const AuthContainer = (props) => {
 			component={Paper}
 			sx={{
 				margin: "1vh",
-				padding: "1em 0.5vw",
+				padding: "1rem 0.5vw",
 				borderRadius: "15px",
 				width: {
 					xs: "90vw",
@@ -33,17 +33,13 @@ const AuthContainer = (props) => {
 					lg: "40vw",
 					xl: "30vw",
 				},
-				paddingBottom: "10px",
-				height: {
-					xs: "200vmin",
-					sm: "90vmax",
-					md: "80vmin",
-					lg: "80vmin",
-					xl: "75vmin",
-				},
+				paddingBottom: "1rem",
+				minWidth: "max-content",
+				height: "max-content",
 			}}
 		>
 			<Grid
+				align="center"
 				container
 				direction="column"
 				sx={{

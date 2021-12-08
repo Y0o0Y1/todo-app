@@ -48,7 +48,10 @@ const SignIn = () => {
 		user.error = false;
 	});
 	return (
-		<AuthContainer header="Sign In" subHeader="Please Enter your credentials">
+		<AuthContainer
+			header="Sign In"
+			subHeader="Please Enter your credentials"
+		>
 			{user.error && (
 				<Alert
 					severity="warning"

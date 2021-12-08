@@ -10,10 +10,9 @@ const Note = ({ task }) => {
 	const userAuthToken = useSelector((state) => {
 		return state.userReducer.userAuthToken;
 	});
+	console.log(task.completed);
 	const dispatch = useDispatch();
-	const [checked, setChecked] = useState(task.completed);
 	const handleChange = () => {
-		setChecked((prev) => !prev);
 		updateTaskState(task._id, userAuthToken, dispatch, task.completed);
 	};
 	return (
@@ -22,50 +21,62 @@ const Note = ({ task }) => {
 			component={Paper}
 			sx={{
 				backgroundColor: "#FFD833",
-				maxWidth: "20vw",
+				minWidth: "15vw",
+				maxWidth: {
+					xs: "100vw",
+				},
 				border: "2px solid #FFD833",
 				maxHeight: "max-content",
 				borderRadius: "5px",
 				margin: "1rem ",
-				padding: "0.3rem",
+				padding: "0.5rem",
 			}}
 		>
-			<Grid item container direction="row" wrap>
-				<Grid item xs={10} align="left">
-					<Typography
-						sx={{
-							textDecoration: checked ? "line-through" : "",
-						}}
-					>
-						{task.description}
-					</Typography>
-				</Grid>
-				<Grid item xs={1}>
-					<Checkbox
-						checked={checked}
-						onChange={handleChange}
-						checkedIcon={
-							<CheckCircleIcon
-								fontSize="small"
-								sx={{
-									color: "#cca500",
-									cursor: "pointer",
-								}}
-							/>
-						}
-						icon={
-							<CheckCircleOutlineIcon
-								sx={{
-									color: "#cca500",
-									cursor: "pointer",
-								}}
-								fontSize="small"
-							/>
-						}
-					/>
-				</Grid>
-				<Grid item xs={12} align="right" justify="center">
-					<DeleteTaskDialog taskID={task._id} />
+			<Grid item container direction="column">
+				<Grid item container xs={12}>
+					<Grid item xs={10} align="left">
+						<Typography
+							sx={{
+								textDecoration: task.completed ? "line-through" : "",
+							}}
+						>
+							{task.description}
+						</Typography>
+					</Grid>
+					<Grid item xs={2} align="right">
+						<Checkbox
+							checked={task.completed}
+							onChange={handleChange}
+							checkedIcon={
+								<CheckCircleIcon
+									fontSize="small"
+									sx={{
+										color: "#cca500",
+										cursor: "pointer",
+									}}
+								/>
+							}
+							icon={
+								<CheckCircleOutlineIcon
+									sx={{
+										color: "#cca500",
+										cursor: "pointer",
+									}}
+									fontSize="small"
+								/>
+							}
+						/>
+					</Grid>
+					<Grid item xs={10} align="right">
+						<Box
+							sx={{
+								display: "hidden",
+							}}
+						></Box>
+					</Grid>
+					<Grid item xs={2} align="right">
+						<DeleteTaskDialog taskID={task._id} />
+					</Grid>
 				</Grid>
 			</Grid>
 		</Box>

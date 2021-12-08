@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { Grid, Backdrop, CircularProgress } from "@mui/material";
+import { Container, Box, Backdrop, CircularProgress } from "@mui/material";
 
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
@@ -20,8 +20,21 @@ const App = () => {
 			navigate("/main");
 		}
 	}, [navigate, user.loggedIn]);
+
 	return (
-		<>
+		<Box>
+			<Routes>
+				{!user.loggedIn ? (
+					<>
+						<Route path="/" exact element={<SignIn />} />
+						<Route path="/sign-up" exact element={<SignUp />} />
+					</>
+				) : (
+					<>
+						<Route path="/main" exact element={<Main />} />
+					</>
+				)}
+			</Routes>
 			<Backdrop
 				sx={{
 					color: "#fff",
@@ -31,29 +44,7 @@ const App = () => {
 			>
 				<CircularProgress color="inherit" />
 			</Backdrop>
-			{user.loggedIn && <Header />}
-			<Grid
-				container
-				direction="row"
-				justifyContent="center"
-				sx={{
-					height: "100vh",
-				}}
-			>
-				<Routes>
-					{!user.loggedIn ? (
-						<>
-							<Route path="/" exact element={<SignIn />} />
-							<Route path="/sign-up" exact element={<SignUp />} />
-						</>
-					) : (
-						<>
-							<Route path="/main" exact element={<Main />} />
-						</>
-					)}
-				</Routes>
-			</Grid>
-		</>
+		</Box>
 	);
 };
 

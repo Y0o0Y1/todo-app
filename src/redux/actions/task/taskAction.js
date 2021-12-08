@@ -36,7 +36,7 @@ export const getAllTasks = (userAuthToken, dispatch) => {
 		.then((response) => {
 			console.log(response.data);
 			getTasksSuccess(dispatch, response.data);
-			return response.data;
+			return response.data.data;
 		})
 		.catch((error) => {
 			console.log(error);
@@ -79,6 +79,25 @@ export const updateTaskState = (taskID, userAuthToken, dispatch, completed) => {
 		.then((response) => {
 			console.log(response.data);
 			getAllTasks(userAuthToken, dispatch);
+			return response.data;
+		})
+		.catch((error) => {
+			console.log(error);
+			return error;
+		});
+};
+
+export const addTask = (data, userAuthToken, dispatch) => {
+	axios
+		.post(baseURL, data, {
+			headers: {
+				Authorization: `Bearer ${userAuthToken}`,
+				"Content-Type": "application/json",
+			},
+		})
+		.then((response) => {
+			getAllTasks(userAuthToken, dispatch);
+			console.log(response.data);
 			return response.data;
 		})
 		.catch((error) => {

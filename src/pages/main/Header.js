@@ -45,7 +45,7 @@ const Header = () => {
 		<Grid
 			item
 			sx={{
-				width: "100%",
+				width: "100vw",
 			}}
 		>
 			{" "}
