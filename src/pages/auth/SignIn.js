@@ -46,12 +46,22 @@ const SignIn = () => {
 	}
 	useEffect(() => {
 		user.error = false;
+		user.isRegistered = false;
 	});
 	return (
-		<AuthContainer
-			header="Sign In"
-			subHeader="Please Enter your credentials"
-		>
+		<AuthContainer header="Sign In" subHeader="Please Enter your credentials">
+			{user.isRegistered && (
+				<Alert
+					severity="success"
+					variant="standard"
+					sx={{
+						borderWidth: "22px",
+					}}
+					align="center"
+				>
+					Sign up success Please Sign In with your credentials{" "}
+				</Alert>
+			)}
 			{user.error && (
 				<Alert
 					severity="warning"

@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
-
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import { Container, Box, Backdrop, CircularProgress } from "@mui/material";
-
+import { Box, Backdrop, CircularProgress } from "@mui/material";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import Main from "./pages/main/Main";
-import Header from "./pages/main/Header";
 
 const App = () => {
 	const navigate = useNavigate();
@@ -20,9 +16,13 @@ const App = () => {
 			navigate("/main");
 		}
 	}, [navigate, user.loggedIn]);
-
 	return (
-		<Box>
+		<Box
+			sx={{
+				align: "center",
+				justifyContent: "center",
+			}}
+		>
 			<Routes>
 				{!user.loggedIn ? (
 					<>

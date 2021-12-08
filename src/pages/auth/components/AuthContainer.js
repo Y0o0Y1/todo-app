@@ -17,28 +17,30 @@ const AuthContainer = (props) => {
 	});
 	return (
 		<Grid
-			alignSelf="center"
-			item
-			justifyContent="center"
-			elevation={7}
+			elevation={10}
 			component={Paper}
 			sx={{
-				margin: "1vh",
+				margin: "10vh auto",
 				padding: "1rem 0.5vw",
 				borderRadius: "15px",
 				width: {
-					xs: "90vw",
-					sm: "70vw",
-					md: "50vw",
-					lg: "40vw",
-					xl: "30vw",
+					xs: "90vmax",
+					sm: "70vmax",
+					md: "50vmax",
+					lg: "40vmax",
+					xl: "30vmax",
 				},
-				paddingBottom: "1rem",
+				paddingBottom: "2rem",
+				maxWidth: "100vw",
 				minWidth: "max-content",
-				height: "max-content",
+				minHeight: "40vh",
+				height: {
+					xs: "max-content",
+				},
 			}}
 		>
 			<Grid
+				item
 				align="center"
 				container
 				direction="column"

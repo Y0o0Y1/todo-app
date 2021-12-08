@@ -24,6 +24,16 @@ const userReducer = (state = initialState, action) => {
 				error: action.error,
 			};
 		}
+		case "USER_REGISTER_REQUEST":
+			return { ...initialState, isRegistering: true };
+		case "USER_REGISTER_SUCCESS":
+			return { ...initialState, isRegistering: false, isRegistered: true };
+		case "USER_REGISTER_FAILURE":
+			return {
+				...initialState,
+				isRegistering: false,
+				registerError: action.error,
+			};
 		case "USER_LOGOUT":
 			return { ...initialState };
 		default:

@@ -1,9 +1,17 @@
 import React from "react";
 import AuthContainer from "./components/AuthContainer";
-import { TextField, Grid, Typography, Button } from "@mui/material";
-
-import { userRegister } from "../../apis/userApis";
+import {
+	TextField,
+	Alert,
+	AlertTitle,
+	Grid,
+	Typography,
+	Button,
+} from "@mui/material";
+import { userRegister } from "../../redux/actions/user/userActions";
 import { useNavigate } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
 
 //Form and Validation Utils
 import * as yup from "yup";
@@ -20,11 +28,14 @@ const validationSchema = yup.object({
 		.string()
 		.required("Password is required")
 		.min(8, "Password Length must not be less than 8"),
-	age: yup.string().required("Age is required"),
+	age: yup.number().positive().integer().required("Age is required"),
 });
-
 const SignUp = () => {
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const user = useSelector((state) => {
+		return state.userReducer;
+	});
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -34,14 +45,25 @@ const SignUp = () => {
 	});
 	const onSubmit = (data) => {
 		console.log("submitting", data);
-		userRegister(data);
+		userRegister(data, dispatch, navigate);
 	};
-
 	return (
 		<AuthContainer
 			header="Sign Up"
 			subHeader="Please Fill The following Form"
 		>
+			{user.registerError && (
+				<Alert
+					severity="warning"
+					variant="standard"
+					sx={{
+						borderWidth: "22px",
+					}}
+				>
+					<AlertTitle align="left">Error</AlertTitle>
+					This email is already have an account please sign in
+				</Alert>
+			)}
 			<form onSubmit={handleSubmit(onSubmit)} noValidate>
 				<Grid
 					mt={1}

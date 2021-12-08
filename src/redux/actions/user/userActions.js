@@ -1,11 +1,15 @@
 import axios from "axios";
-
 let baseURL = "https://api-nodejs-todolist.herokuapp.com/user";
-
+//Logging Types
 const USER_LOG_REQUEST = "USER_LOG_REQUEST";
 const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
 const USER_LOGOUT = "USER_LOGOUT";
+
+//Registeration Types
+const USER_REGISTER_REQUEST = "USER_REGISTER_REQUEST";
+const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
+const USER_REGISTER_FAILURE = "USER_REGISTER_FAILURE";
 
 //Action Creator
 export const userLog = (dispatch) => {
@@ -30,6 +34,24 @@ export const userLoginFailure = (dispatch, error) => {
 export const userLogout = (dispatch) => {
 	dispatch({
 		type: USER_LOGOUT,
+	});
+};
+
+export const userRegisterRequest = (dispatch) => {
+	dispatch({
+		type: USER_REGISTER_REQUEST,
+	});
+};
+
+export const userRegisterSuccess = (dispatch) => {
+	dispatch({
+		type: USER_REGISTER_SUCCESS,
+	});
+};
+export const userRegisterFailure = (dispatch, error) => {
+	dispatch({
+		type: USER_REGISTER_FAILURE,
+		error: error,
 	});
 };
 
@@ -75,5 +97,21 @@ export const logout = (dispatch, token, navigate) => {
 			console.log("catching");
 			console.log("error", error);
 			return error;
+		});
+};
+//Registeration Function
+
+export const userRegister = (data, dispatch, navigate) => {
+	userRegisterRequest(dispatch);
+	axios
+		.post(`${baseURL}/register`, data)
+		.then(function (response) {
+			userRegisterSuccess(dispatch);
+			navigate("/");
+			console.log(JSON.stringify(response.data));
+		})
+		.catch(function (error) {
+			userRegisterFailure(dispatch, error.message);
+			console.log(error);
 		});
 };
