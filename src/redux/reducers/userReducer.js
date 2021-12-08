@@ -12,7 +12,7 @@ const userReducer = (state = initialState, action) => {
 				...initialState,
 				loggedIn: true,
 				logging: false,
-				response: action.response,
+				user: action.response.user,
 				userAuthToken: action.response.token,
 			};
 		}

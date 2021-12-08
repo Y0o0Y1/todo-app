@@ -14,10 +14,10 @@ export const userLog = (dispatch) => {
 	});
 };
 
-export const userLoginSuccess = (dispatch, payload) => {
+export const userLoginSuccess = (dispatch, response) => {
 	dispatch({
 		type: USER_LOGIN_SUCCESS,
-		response: payload,
+		response: response,
 	});
 };
 

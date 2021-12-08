@@ -19,29 +19,25 @@ import { logout } from "../../redux/actions/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Profile"];
 
 const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const userToken = useSelector((state) => {
-		return state.userReducer.userAuthToken;
+	const user = useSelector((state) => {
+		return state.userReducer;
 	});
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
-
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
 	};
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
 	};
-
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
-
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
@@ -115,7 +111,19 @@ const Header = () => {
 							component="div"
 							sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
 						>
-							LOGO
+							<Box
+								variant="h6"
+								noWrap
+								mb={1}
+								mt={1}
+								component="div"
+								sx={{
+									flexGrow: 1,
+									display: { xs: "flex", md: "none" },
+								}}
+							>
+								<img width="50" height="50" src={logo} alt="logo" />
+							</Box>{" "}
 						</Typography>
 						<Box
 							sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
@@ -130,12 +138,11 @@ const Header = () => {
 								</Button>
 							))}
 						</Box>
-
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="Open settings">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 									<Avatar
-										alt="Remy Sharp"
+										alt={user.user.name}
 										src="/static/images/avatar/2.jpg"
 									/>
 								</IconButton>
@@ -160,7 +167,7 @@ const Header = () => {
 								<MenuItem key="" onClick={handleCloseNavMenu}>
 									<Button
 										onClick={() => {
-											logout(dispatch, userToken, navigate);
+											logout(dispatch, user.userAuthToken, navigate);
 										}}
 									>
 										Logout
