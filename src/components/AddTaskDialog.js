@@ -10,6 +10,8 @@ import {
 	useMediaQuery,
 	TextField,
 	Grid,
+	CircularProgress,
+	Box,
 } from "@mui/material";
 
 import { addTask } from "../redux/actions/task/taskAction";
@@ -28,24 +30,30 @@ export const AddTaskDialog = () => {
 	const userAuthToken = useSelector((state) => {
 		return state.userReducer.userAuthToken;
 	});
+	const tasksState = useSelector((state) => {
+		return state.tasksReducer;
+	});
 	const [open, setOpen] = useState(false);
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
-	const handleClose = () => {
-		setOpen(false);
-		clearErrors();
-	};
+
 	const {
 		handleSubmit,
 		formState: { errors },
 		control,
 		clearErrors,
+		reset,
 	} = useForm({
 		resolver: yupResolver(validationSchema),
 	});
+	const handleClose = () => {
+		setOpen(false);
+		clearErrors();
+		reset();
+	};
 	const onSubmit = (data) => {
 		console.log("submitting", data);
 		addTask(data, userAuthToken, dispatch);
@@ -120,9 +128,24 @@ export const AddTaskDialog = () => {
 								<Button autoFocus onClick={handleClose}>
 									Cancel
 								</Button>
-								<Button type="submit" autoFocus>
-									Submit
-								</Button>
+								<Box sx={{ m: 1, position: "relative" }}>
+									<Button type="submit" autoFocus>
+										Submit
+									</Button>
+									{tasksState.addingTask && (
+										<CircularProgress
+											size={24}
+											sx={{
+												color: "primary",
+												position: "absolute",
+												top: "50%",
+												left: "50%",
+												marginTop: "-12px",
+												marginLeft: "-12px",
+											}}
+										/>
+									)}
+								</Box>
 							</DialogActions>
 						</Grid>
 					</form>

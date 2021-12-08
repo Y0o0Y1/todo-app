@@ -22,6 +22,21 @@ const tasksReducer = (state = initialState, action) => {
 				error: action.error,
 			};
 		}
+		case "ADD_TASK_REQUEST":
+			return { ...initialState, addingTask: true };
+		case "ADD_TASK_SUCCESS": {
+			return {
+				...initialState,
+				addingTask: false,
+			};
+		}
+		case "ADD_TASK_FAILURE": {
+			return {
+				...initialState,
+				addingTask: false,
+				error: action.error,
+			};
+		}
 		default:
 			return state;
 	}
