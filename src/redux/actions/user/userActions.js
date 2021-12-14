@@ -10,7 +10,6 @@ import {
 } from "./userTypes";
 
 let baseURL = "https://api-nodejs-todolist.herokuapp.com/user";
-
 //Action Creator
 export const userLog = (dispatch) => {
 	dispatch({
@@ -59,26 +58,24 @@ export const userRegisterFailure = (dispatch, error) => {
 
 //Login Function
 export const userLogin = (dispatch, data, navigate) => {
-	userLog(dispatch);
+	dispatch({ type: USER_LOG_REQUEST });
 	axios
 		.post(`${baseURL}/login`, data)
 		.then(function (response) {
-			userLoginSuccess(dispatch, response.data);
+			dispatch({ type: USER_LOGIN_SUCCESS, response: response.data });
 			console.log(JSON.stringify(response.data));
 			navigate("/main");
 			return response;
 		})
 		.catch((error) => {
-			console.log("catching");
-			userLoginFailure(dispatch, error);
-			console.log("errorrrrrrrr", error);
+			dispatch({ type: USER_LOGIN_FAILURE, error: error });
 			return error;
 		});
 };
 
 //Logout Function
 export const logout = (dispatch, token, navigate) => {
-	userLog(dispatch);
+	dispatch({ type: USER_LOG_REQUEST });
 	axios
 		.post(
 			`${baseURL}/logout`,
@@ -88,8 +85,7 @@ export const logout = (dispatch, token, navigate) => {
 			}
 		)
 		.then(function (response) {
-			userLogout(dispatch);
-			console.log(JSON.stringify(response.data));
+			dispatch({ type: USER_LOGOUT });
 			navigate("/");
 			return response;
 		})
@@ -101,17 +97,25 @@ export const logout = (dispatch, token, navigate) => {
 };
 //Registeration Function
 
+// USER_LOG_REQUEST,
+// USER_LOGIN_SUCCESS,
+// USER_LOGIN_FAILURE,
+// USER_LOGOUT,
+// USER_REGISTER_REQUEST,
+// USER_REGISTER_SUCCESS,
+// USER_REGISTER_FAILURE,
+
 export const userRegister = (data, dispatch, navigate) => {
-	userRegisterRequest(dispatch);
+	dispatch({ type: USER_REGISTER_REQUEST });
 	axios
 		.post(`${baseURL}/register`, data)
 		.then(function (response) {
-			userRegisterSuccess(dispatch);
+			dispatch({ type: USER_REGISTER_SUCCESS });
 			navigate("/");
 			console.log(JSON.stringify(response.data));
 		})
 		.catch(function (error) {
-			userRegisterFailure(dispatch, error.message);
+			dispatch({ type: USER_REGISTER_FAILURE, error: error.message });
 			console.log(error);
 		});
 };

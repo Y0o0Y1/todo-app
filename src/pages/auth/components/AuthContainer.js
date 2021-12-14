@@ -12,9 +12,6 @@ import logo from "../../../assets/google-keep.png";
 
 //----------------------------------------------------------------------------------------------
 const AuthContainer = (props) => {
-	const user = useSelector((state) => {
-		return state.userReducer;
-	});
 	return (
 		<Grid
 			elevation={10}
@@ -32,16 +29,16 @@ const AuthContainer = (props) => {
 					lg: "30vw",
 					xl: "20vw",
 				},
-				maxWidth: "80vw",
+				// maxWidth: "max-content",
 				minHeight: "max-content",
 				height: {
-					xs: "80vh",
-					sm: "80vh",
-					md: "80vh",
-					lg: "80vh",
+					xs: "85vmax",
+					sm: "85vh",
+					md: "85vh",
+					lg: "85vh",
 					xl: "80vh",
 				},
-				maxHeight: "70vh",
+				// maxHeight: "max-content",
 			}}
 		>
 			<Grid

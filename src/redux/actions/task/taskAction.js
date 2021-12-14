@@ -35,6 +35,7 @@ export const addTaskRequest = (dispatch) => {
 		type: ADD_TASK_REQUEST,
 	});
 };
+
 export const addTaskSuccess = (dispatch) => {
 	dispatch({
 		type: ADD_TASK_SUCCESS,
@@ -50,7 +51,7 @@ export const addTaskFailure = (dispatch, error) => {
 
 //Async functions
 export const getAllTasks = (userAuthToken, dispatch) => {
-	getTasksRequest(dispatch);
+	dispatch({ type: GET_TASKS_REQUEST });
 	axios
 		.get(baseURL, {
 			headers: {
@@ -59,12 +60,12 @@ export const getAllTasks = (userAuthToken, dispatch) => {
 		})
 		.then((response) => {
 			console.log(response.data);
-			getTasksSuccess(dispatch, response.data);
+			dispatch({ type: GET_TASKS_SUCCESS, payload: response.data });
 			return response.data.data;
 		})
 		.catch((error) => {
 			console.log(error);
-			getTasksFailure(dispatch, error);
+			dispatch({ type: GET_TASKS_FAILURE, error });
 			return error;
 		});
 };
@@ -111,8 +112,9 @@ export const updateTaskState = (taskID, userAuthToken, dispatch, completed) => {
 		});
 };
 
+
 export const addTask = (data, userAuthToken, dispatch) => {
-	addTaskRequest(dispatch);
+	dispatch({ type: ADD_TASK_REQUEST });
 	axios
 		.post(baseURL, data, {
 			headers: {
@@ -121,13 +123,13 @@ export const addTask = (data, userAuthToken, dispatch) => {
 			},
 		})
 		.then((response) => {
-			addTaskSuccess(dispatch);
+			dispatch({ type: ADD_TASK_SUCCESS });
 			getAllTasks(userAuthToken, dispatch);
 			console.log(response.data);
 			return response.data;
 		})
 		.catch((error) => {
-			addTaskFailure(dispatch);
+			dispatch({ type: ADD_TASK_FAILURE });
 			console.log(error);
 			return error;
 		});
