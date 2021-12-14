@@ -1,15 +1,15 @@
 import axios from "axios";
-let baseURL = "https://api-nodejs-todolist.herokuapp.com/user";
-//Logging Types
-const USER_LOG_REQUEST = "USER_LOG_REQUEST";
-const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
-const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
-const USER_LOGOUT = "USER_LOGOUT";
+import {
+	USER_LOG_REQUEST,
+	USER_LOGIN_SUCCESS,
+	USER_LOGIN_FAILURE,
+	USER_LOGOUT,
+	USER_REGISTER_REQUEST,
+	USER_REGISTER_SUCCESS,
+	USER_REGISTER_FAILURE,
+} from "./userTypes";
 
-//Registeration Types
-const USER_REGISTER_REQUEST = "USER_REGISTER_REQUEST";
-const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
-const USER_REGISTER_FAILURE = "USER_REGISTER_FAILURE";
+let baseURL = "https://api-nodejs-todolist.herokuapp.com/user";
 
 //Action Creator
 export const userLog = (dispatch) => {

@@ -1,13 +1,14 @@
 import axios from "axios";
+import {
+	ADD_TASK_REQUEST,
+	GET_TASKS_REQUEST,
+	GET_TASKS_SUCCESS,
+	GET_TASKS_FAILURE,
+	ADD_TASK_SUCCESS,
+	ADD_TASK_FAILURE,
+} from "./taskTypes";
+
 let baseURL = "https://api-nodejs-todolist.herokuapp.com/task";
-
-const GET_TASKS_REQUEST = "GET_TASKS_REQUEST";
-const GET_TASKS_SUCCESS = "GET_TASKS_SUCCESS";
-const GET_TASKS_FAILURE = "GET_TASKS_FAILURE";
-
-const ADD_TASK_REQUEST = "ADD_TASK_REQUEST";
-const ADD_TASK_SUCCESS = "ADD_TASK_SUCCESS";
-const ADD_TASK_FAILURE = "ADD_TASK_FAILURE";
 
 //Action Creators
 export const getTasksRequest = (dispatch) => {

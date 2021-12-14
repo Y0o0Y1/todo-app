@@ -33,7 +33,7 @@ const AuthContainer = (props) => {
 					xl: "20vw",
 				},
 				maxWidth: "80vw",
-				minHeight: "40vh",
+				minHeight: "max-content",
 				height: {
 					xs: "80vh",
 					sm: "80vh",
