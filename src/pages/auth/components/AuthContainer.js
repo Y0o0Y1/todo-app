@@ -23,20 +23,25 @@ const AuthContainer = (props) => {
 				margin: "10vh auto",
 				padding: "1rem 0.5vw",
 				borderRadius: "15px",
-				width: {
-					xs: "90vmax",
-					sm: "70vmax",
-					md: "50vmax",
-					lg: "40vmax",
-					xl: "30vmax",
-				},
 				paddingBottom: "2rem",
-				maxWidth: "100vw",
 				minWidth: "max-content",
+				width: {
+					xs: "90vw",
+					sm: "50vw",
+					md: "40vw",
+					lg: "30vw",
+					xl: "20vw",
+				},
+				maxWidth: "80vw",
 				minHeight: "40vh",
 				height: {
-					xs: "max-content",
+					xs: "80vh",
+					sm: "80vh",
+					md: "80vh",
+					lg: "80vh",
+					xl: "80vh",
 				},
+				maxHeight: "70vh",
 			}}
 		>
 			<Grid
@@ -60,15 +65,6 @@ const AuthContainer = (props) => {
 						}}
 					>
 						{props.header}
-					</Typography>
-					<Typography
-						variant="h4"
-						sx={{
-							fontSize: "20px",
-							fontWeight: "medium",
-						}}
-					>
-						{props.subHeader}
 					</Typography>
 				</Grid>
 				<Container>{props.children}</Container>

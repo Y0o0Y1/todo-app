@@ -19,17 +19,30 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 
 const validationSchema = yup.object({
-	name: yup.string().required("Name is Required"),
+	name: yup
+		.string()
+		.required("Name is Required")
+		.min(8, "Password Length must not be less than 8")
+		.max(16, "Name Length must not be maximum than 16")
+		.trim(),
 	email: yup
 		.string()
 		.email("Please Enter a valid Email")
-		.required("Please Enter Your Email"),
+		.required("Email is Required"),
 	password: yup
 		.string()
-		.required("Password is required")
+		.required("Password is Required")
 		.min(8, "Password Length must not be less than 8")
+		.max(16, "Password Length must not be maximum than 16")
 		.trim(),
-	age: yup.number().positive().integer().required("Age is required"),
+	age: yup
+		.number()
+		.required()
+		.positive()
+		.integer()
+		.min(18, "Age must not be less than 18")
+		.max(70, "Age must not be maximum than 70")
+		.typeError("Age is Required"),
 });
 const SignUp = () => {
 	const dispatch = useDispatch();
@@ -49,10 +62,7 @@ const SignUp = () => {
 		userRegister(data, dispatch, navigate);
 	};
 	return (
-		<AuthContainer
-			header="Sign Up"
-			subHeader="Please Fill The following Form"
-		>
+		<AuthContainer header="Sign Up">
 			{user.registerError && (
 				<Alert
 					severity="warning"
@@ -170,9 +180,12 @@ const SignUp = () => {
 										{...field}
 										label="Age"
 										fullWidth
-										type="age"
+										type="number"
 										error={!!errors.age}
 										helperText={errors.age ? errors.age?.message : ""}
+										sx={{
+											WebkitAppearance: "none",
+										}}
 									/>
 								);
 							}}
@@ -213,7 +226,7 @@ const SignUp = () => {
 								onClick={() => navigate("../")}
 							>
 								{" "}
-								Sign-In here!
+								Sign-In
 							</Typography>
 						</Typography>{" "}
 					</Grid>

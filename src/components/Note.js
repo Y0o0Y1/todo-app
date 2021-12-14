@@ -11,8 +11,6 @@ const Note = ({ task }) => {
 	const userAuthToken = useSelector((state) => {
 		return state.userReducer.userAuthToken;
 	});
-	console.log(task);
-	console.log(task.completed);
 	const dispatch = useDispatch();
 	const handleChange = () => {
 		updateTaskState(task._id, userAuthToken, dispatch, task.completed);
@@ -22,12 +20,13 @@ const Note = ({ task }) => {
 			elevation={5}
 			component={Paper}
 			sx={{
-				backgroundColor: "#FFD833",
+				backgroundColor: task.completed ? "#CCFF90" : "#FFD833",
 				minWidth: "15vw",
 				maxWidth: {
 					xs: "100vw",
 				},
 				border: "2px solid #FFD833",
+				borderColor: task.completed ? "#CCFF90" : "#FFD833",
 				maxHeight: "max-content",
 				borderRadius: "5px",
 				margin: "1rem ",
@@ -36,7 +35,7 @@ const Note = ({ task }) => {
 		>
 			<Grid item container direction="column">
 				<Grid item container xs={12}>
-					<Grid item xs={10} align="left">
+					<Grid item xs={9} align="left">
 						<Typography
 							sx={{
 								textDecoration: task.completed ? "line-through" : "",
@@ -45,15 +44,15 @@ const Note = ({ task }) => {
 							{task.description}
 						</Typography>
 					</Grid>
-					<Grid item xs={2} align="right">
+					<Grid item xs={3} align="right">
 						<Checkbox
 							checked={task.completed}
 							onChange={handleChange}
 							checkedIcon={
 								<CheckCircleIcon
-									fontSize="small"
+									fontSize="large"
 									sx={{
-										color: "#cca500",
+										color: "gray",
 										cursor: "pointer",
 									}}
 								/>
@@ -61,27 +60,31 @@ const Note = ({ task }) => {
 							icon={
 								<CheckCircleOutlineIcon
 									sx={{
-										color: "#cca500",
+										color: "gray",
 										cursor: "pointer",
 									}}
-									fontSize="small"
+									fontSize="large"
 								/>
 							}
 						/>
 					</Grid>
-					<Grid item xs={10} align="left">
-						<Box
+					<Grid
+						item
+						xs={10}
+						align="left"
+						sx={{
+							alignSelf: "flex-end",
+						}}
+					>
+						<Typography
 							sx={{
-								display: "hidden",
+								fontSize: "0.85rem",
+								position: "bottom",
 							}}
 						>
-							<Typography>
-								Updated at{" "}
-								{moment(task.updatedAt).format(
-									"dddd, MMM D YYYY, h:mm a"
-								)}
-							</Typography>
-						</Box>
+							Updated at{" "}
+							{moment(task.updatedAt).format("dddd, MMM D YYYY, h:mm a")}
+						</Typography>
 					</Grid>
 					<Grid item xs={2} align="right">
 						<DeleteTaskDialog taskID={task._id} />

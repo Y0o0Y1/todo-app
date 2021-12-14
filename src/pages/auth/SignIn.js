@@ -49,7 +49,7 @@ const SignIn = () => {
 		user.isRegistered = false;
 	});
 	return (
-		<AuthContainer header="Sign In" subHeader="Please Enter your credentials">
+		<AuthContainer header="Sign In">
 			{user.isRegistered && (
 				<Alert
 					severity="success"
@@ -64,19 +64,20 @@ const SignIn = () => {
 			)}
 			{user.error && (
 				<Alert
+					m={1}
 					severity="warning"
-					variant="standard"
+					variant="outlined"
 					sx={{
-						borderWidth: "22px",
+						borderWidth: "2px",
 					}}
 				>
-					<AlertTitle>Error</AlertTitle>
-					Incorrect email or password please check your credentials{" "}
+					{/* <AlertTitle>Error</AlertTitle> */}
+					Incorrect email or password
 				</Alert>
 			)}
 			<form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
 				<Grid
-					mt={3}
+					mt={2}
 					item
 					container
 					direction="column"
@@ -167,7 +168,7 @@ const SignIn = () => {
 								onClick={() => navigate("./sign-up")}
 							>
 								{" "}
-								Sign-up here!
+								Sign-Up
 							</Typography>
 						</Typography>{" "}
 					</Grid>
