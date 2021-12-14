@@ -1,14 +1,12 @@
 import {
 	Paper,
-	Alert,
-	AlertTitle,
 	Container,
 	Typography,
 	Grid,
 } from "@mui/material";
 
 import { useSelector } from "react-redux";
-import logo from "../../../assets/google-keep.png";
+import logo from "../../../assets/images/google-keep.png";
 
 //----------------------------------------------------------------------------------------------
 const AuthContainer = (props) => {
