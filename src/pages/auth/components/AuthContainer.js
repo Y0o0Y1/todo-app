@@ -27,7 +27,7 @@ const AuthContainer = (props) => {
 					sm: "50vw",
 					md: "40vw",
 					lg: "40vw",
-					xl: "20vw",
+					xl: "25vw",
 				},
 				minHeight: "max-content",
 				height: {
