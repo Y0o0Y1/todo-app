@@ -6,54 +6,15 @@ import {
 	GET_TASKS_FAILURE,
 	ADD_TASK_SUCCESS,
 	ADD_TASK_FAILURE,
-} from "./taskTypes";
+} from "../../types";
 
-let baseURL = "https://api-nodejs-todolist.herokuapp.com/task";
-
-//Action Creators
-export const getTasksRequest = (dispatch) => {
-	dispatch({
-		type: GET_TASKS_REQUEST,
-	});
-};
-
-export const getTasksSuccess = (dispatch, payload) => {
-	dispatch({
-		type: GET_TASKS_SUCCESS,
-		payload: payload,
-	});
-};
-export const getTasksFailure = (dispatch, error) => {
-	dispatch({
-		type: GET_TASKS_FAILURE,
-		error: error,
-	});
-};
-
-export const addTaskRequest = (dispatch) => {
-	dispatch({
-		type: ADD_TASK_REQUEST,
-	});
-};
-
-export const addTaskSuccess = (dispatch) => {
-	dispatch({
-		type: ADD_TASK_SUCCESS,
-	});
-};
-
-export const addTaskFailure = (dispatch, error) => {
-	dispatch({
-		type: ADD_TASK_FAILURE,
-		error: error,
-	});
-};
+import { baseURL } from "./../../../config/config";
 
 //Async functions
 export const getAllTasks = (userAuthToken, dispatch) => {
 	dispatch({ type: GET_TASKS_REQUEST });
 	axios
-		.get(baseURL, {
+		.get(`${baseURL}/task`, {
 			headers: {
 				Authorization: `Bearer ${userAuthToken}`,
 			},
@@ -72,7 +33,7 @@ export const getAllTasks = (userAuthToken, dispatch) => {
 
 export const deleteTask = (taskID, userAuthToken, dispatch) => {
 	axios
-		.delete(`${baseURL}/${taskID}`, {
+		.delete(`${baseURL}/task/${taskID}`, {
 			headers: {
 				Authorization: `Bearer ${userAuthToken}`,
 				"Content-Type": "application/json",
@@ -92,7 +53,7 @@ export const deleteTask = (taskID, userAuthToken, dispatch) => {
 export const updateTaskState = (taskID, userAuthToken, dispatch, completed) => {
 	axios
 		.put(
-			`${baseURL}/${taskID}`,
+			`${baseURL}/task/${taskID}`,
 			{ completed: !completed },
 			{
 				headers: {
@@ -112,11 +73,10 @@ export const updateTaskState = (taskID, userAuthToken, dispatch, completed) => {
 		});
 };
 
-
 export const addTask = (data, userAuthToken, dispatch) => {
 	dispatch({ type: ADD_TASK_REQUEST });
 	axios
-		.post(baseURL, data, {
+		.post(`${baseURL}/task`, data, {
 			headers: {
 				Authorization: `Bearer ${userAuthToken}`,
 				"Content-Type": "application/json",

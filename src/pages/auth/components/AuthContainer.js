@@ -23,22 +23,20 @@ const AuthContainer = (props) => {
 				paddingBottom: "2rem",
 				minWidth: "max-content",
 				width: {
-					xs: "90vw",
+					xs: "80vw",
 					sm: "50vw",
 					md: "40vw",
-					lg: "30vw",
+					lg: "40vw",
 					xl: "20vw",
 				},
-				// maxWidth: "max-content",
 				minHeight: "max-content",
 				height: {
-					xs: "85vmax",
+					xs: "85vh",
 					sm: "85vh",
 					md: "85vh",
 					lg: "85vh",
 					xl: "80vh",
 				},
-				// maxHeight: "max-content",
 			}}
 		>
 			<Grid
